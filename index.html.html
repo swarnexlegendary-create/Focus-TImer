@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Focus — Study Timer</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:system-ui,Arial,sans-serif;background:#f4f6fb;color:#182033;display:grid;place-items:center;padding:20px}.app{width:min(440px,100%);background:#fff;border:1px solid #e6e9f2;border-radius:28px;padding:28px;box-shadow:0 20px 70px #26365b18}.top{display:flex;align-items:center;gap:12px;margin-bottom:28px}.logo{width:42px;height:42px;border-radius:14px;background:#6257e8;color:#fff;display:grid;place-items:center;font-size:22px}h1{font-size:19px;margin:0}.sub{font-size:13px;color:#7c8498;margin-top:3px}.tag{margin-left:auto;background:#eff0ff;color:#6257e8;padding:7px 10px;border-radius:20px;font-size:11px;font-weight:700}.panel{background:#f7f7ff;border-radius:22px;padding:26px 18px;text-align:center}.label{font-size:12px;text-transform:uppercase;letter-spacing:1.8px;color:#8188a0;font-weight:700}.time{font-size:58px;font-weight:750;letter-spacing:-2px;margin:10px 0;color:#222640}.desc{font-size:14px;color:#7c8498}button{border:0;border-radius:14px;padding:15px 18px;background:#6257e8;color:white;font-size:15px;font-weight:700;width:100%;margin-top:22px;cursor:pointer}button:hover{background:#5146d3}.bottom{display:flex;justify-content:space-between;margin-top:20px;font-size:12px;color:#9aa0b1}#prank{display:none;text-align:center}#prank h2{font-size:28px;margin:8px 0}#prank p{color:#737b91}.tiny{font-size:11px;color:#8d94a6;margin-top:14px}a.link{display:block;text-align:center;margin-top:14px;color:#6257e8;font-weight:650}
+</style>
+</head>
+<body>
+<main class="app">
+<section id="normal">
+<div class="top"><div class="logo">✦</div><div><h1>Focus Timer</h1><div class="sub">A little focus goes a long way.</div></div><div class="tag">STUDY MODE</div></div>
+<div class="panel"><div class="label">Your focus session</div><div class="time" id="time">25:00</div><div class="desc" id="status">Ready when you are.</div></div>
+<button id="start">▶ Start focus session</button>
+<div class="bottom"><span>☁ Your progress stays here</span><span>Session 1 of 4</span></div>
+</section>
+<section id="prank">
+<div style="font-size:48px">🎉</div><h2>YOU GOT RICKROLLED!</h2><p>Your focus session has been upgraded. You're welcome. 😭</p>
+<button id="play">▶ Play Rickroll 🎵</button>
+<p class="tiny">If the embedded player has trouble, use the button below to open the video directly.</p>
+<a class="link" id="openVideo" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Open Rickroll on YouTube ↗</a>
+<div class="tiny">It's a prank — close this tab whenever you like.</div>
+</section>
+</main>
+<script>
+document.getElementById('start').addEventListener('click',function(){
+  this.disabled=true;this.textContent='⏳ Preparing your session…';
+  document.getElementById('status').textContent='Getting everything ready…';
+  let remaining=5;const timer=document.getElementById('time');timer.textContent='00:05';
+  const tick=setInterval(()=>{remaining--;timer.textContent='00:0'+Math.max(remaining,0);
+    if(remaining<=0){clearInterval(tick);document.getElementById('normal').style.display='none';document.getElementById('prank').style.display='block';}
+  },1000);
+});
+document.getElementById('play').addEventListener('click',function(){
+  window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ','_blank','noopener,noreferrer');
+});
+</script>
+</body>
+</html>
